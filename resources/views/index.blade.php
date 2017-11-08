@@ -92,7 +92,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Momo-nation
+                    Momonation
                 </div>
 
                 <div class="links">

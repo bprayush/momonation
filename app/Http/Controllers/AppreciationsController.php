@@ -51,20 +51,36 @@ class AppreciationsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'raw' => 'required',
-            'apprc_user_id' => 'required'
+            'appreciated_user' => 'required'
         ]);
 
+        $plate = '';
+
+        if( $request->raw == 5 )
+        {
+            $plate = "Half Plate MoMo";
+        }
+        else if( $request->raw == 10 )
+        {
+            $plate = "One Plate MoMo";
+        }
+        else if( $request->raw == 20 )
+        {
+            $plate = "Two Plate MoMo";
+        }
+
         $appreciation = Appreciation::create([
-            'user_id' => Auth::id(),
-            'apprc_user_id' => $request->apprc_user_id,
-            'name' => $request->name
+            'appreciating_user' => Auth::id(),
+            'appreciated_user' => $request->appreciated_user,
+            'name' => $request->name,
+            'plates' => $plate
         ]);
 
         $user = Auth::user();
         $user->momobank->raw = $user->momobank->raw - $request->raw;
         $user->momobank->save();
 
-        $apUser = User::find( $request->apprc_user_id );
+        $apUser = User::find( $request->appreciated_user );
         $apUser->momobank->cooked = $apUser->momobank->cooked + $request->raw;
         $apUser->momobank->save();
 

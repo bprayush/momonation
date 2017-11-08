@@ -38,9 +38,14 @@ class User extends Authenticatable
         return $this->hasOne('App\Momobank');
     }
 
-    public function appreciation()
+    public function appreciated()
     {
-        return $this->belongsToMany('App\Appreciation');
+        return $this->hasMany('App\Appreciation', 'appreciating_user', 'id');   
+    }
+
+    public function appreciatedBy()
+    {
+        return $this->hasMany('App\Appreciation', 'appreciated_user', 'id');
     }
 
 }

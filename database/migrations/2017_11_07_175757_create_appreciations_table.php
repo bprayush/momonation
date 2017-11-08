@@ -16,8 +16,9 @@ class CreateAppreciationsTable extends Migration
         Schema::create('appreciations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('user_id')->refrences('id')->on('users');
-            $table->integer('apprc_user_id')->refrences('id')->on('users');
+            $table->integer('appreciating_user')->refrences('id')->on('users');
+            $table->integer('appreciated_user')->refrences('id')->on('users');
+            $table->string('plates');
             $table->timestamps();
         });
     }

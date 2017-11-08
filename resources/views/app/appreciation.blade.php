@@ -5,6 +5,9 @@
 	@include('app.includes.sidepanel')
 
 	<div class="col-md-8">
+
+		@include('app.includes.errors');
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Appreciation Form
@@ -18,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label for="appreciate">Appreciate</label>
-						<select class="form-control" id="Appreciate" name="apprc_user_id">
+						<select class="form-control" id="Appreciate" name="appreciated_user">
 							@foreach( $users as $usr )
 								@if( $usr->id !== $user->id )
 									<option value="{{ $usr->id }}">{{ $usr->name }}</option>
