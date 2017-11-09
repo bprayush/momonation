@@ -36,6 +36,12 @@ class AppreciationsController extends Controller
         $users = User::where('approved', 1)->where('admin', 0)->orderBy('name', 'asc')->get();
         $user = User::find(Auth::id());
 
+        if( $users->count() <= 1 )
+        {
+            Session::flash('info', 'You need more than one people to appreciate.');
+            return redirect(route('app.index'));
+        }
+
         return view('app.appreciation', compact('users', 'user'));
     }
 
