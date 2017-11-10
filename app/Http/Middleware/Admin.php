@@ -18,10 +18,19 @@ class Admin
     public function handle($request, Closure $next)
     {
 
-        if( !Auth::user()->admin )
+
+        if(!Auth::guest())
+        {
+            if( !Auth::user()->admin )
+            {
+                Session::flash('info','You do not have enough permissions to view this page');
+                return redirect()->route('homepage');
+            }
+        }
+        else
         {
             Session::flash('info','You do not have enough permissions to view this page');
-            return redirect()->route('homepage');
+            return redirect()->route('homepage');      
         }
 
         return $next($request);
