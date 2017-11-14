@@ -6,7 +6,7 @@
 
 	<div class="col-md-8">
 
-		@include('app.includes.errors');
+		@include('app.includes.errors')
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
