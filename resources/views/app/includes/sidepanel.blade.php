@@ -25,7 +25,7 @@
 
 	<ul class="list-unstyled components">
 		<li>
-			<a href="#">
+			<a href="{{ route('app.index') }}">
 				<i class="fas fa-home"></i>&nbsp;
 				Home
 			</a>
@@ -37,7 +37,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="{{ route('appreciation') }}">
 				<i class="fas fa-thumbs-up"></i>&nbsp;
 				Appreciate
 			</a>

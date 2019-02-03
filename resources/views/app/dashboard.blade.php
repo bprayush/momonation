@@ -25,7 +25,7 @@
                             <i class="fas fa-drumstick-bite icon_stat"></i>&nbsp;
                         </span>
                         <span class="stat">
-                            16
+                            {{ $user->momobank->raw }}
                         </span>
                         Raw momos
                     </div>
@@ -36,7 +36,7 @@
                             <i class="fas fa-fire icon_stat"></i>&nbsp;
                         </span>
                         <span class="stat">
-                            6
+                            {{ $user->momobank->cooked }}
                         </span>
                         Cooked momos
                     </div>
@@ -47,7 +47,7 @@
                             <i class="fas fa-thumbs-up icon_stat"></i>&nbsp;
                         </span>
                         <span class="stat">
-                            3
+                            {{ $user->appreciatedBy()->count() }}
                         </span>
                         Appceciations
                     </div>
@@ -58,11 +58,10 @@
                 <div class="col-md-6">	
                     <h5 class="text-info">Recent Activities</h5>
                     <div class="boxes recents">
-                        <a href="#">Prayush Bijukchhe</a> appreciated <a href="#">Animesh Pandey</a> with 16 momos
-                        <hr>
-                        <a href="#">Prayush Bijukchhe</a> appreciated <a href="#">Animesh Pandey</a> with 16 momos
-                        <hr>
-                        <a href="#">Prayush Bijukchhe</a> appreciated <a href="#">Animesh Pandey</a> with 16 momos
+                        @foreach($appreciations as $appreciation)
+                            {!! $appreciation !!}
+                            <hr>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-6">
