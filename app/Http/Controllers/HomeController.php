@@ -48,7 +48,7 @@ class HomeController extends Controller
                 array_push($appreciations, $temp);
             }
 
-            return view('app.index', compact('user', 'appreciations'));
+            return view('app.dashboard', compact('user', 'appreciations'));
         }
     }
 }

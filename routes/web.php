@@ -38,4 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
 });
 
 
+Route::get('/test', function(){
+	return view('app.dashboard');
+});
+
 	
