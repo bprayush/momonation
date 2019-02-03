@@ -18,6 +18,9 @@
 						@endforeach
 					@else
 						<li class="list-group-item">No appreciations yet</li>
+						<li>
+							<i class="fas fa-angle"></i>
+						</li>
 					@endif
 
 				</ul>
