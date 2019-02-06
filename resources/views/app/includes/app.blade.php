@@ -21,8 +21,20 @@
 			<!-- Page Content Holder -->
 			<div id="content">
 			</div>
-			
-			@yield('content')
+			<div class="everything">
+				<div class="navi">
+					<span style="float:right;">
+						<img src="https://media.licdn.com/dms/image/C4E03AQF6vlfnMgz5-Q/profile-displayphoto-shrink_200_200/0?e=1553126400&v=beta&t=Y5AI9X8Vq6T8kuRB4bqiUPfso_Ur64SDbYAD_1xoVPg" class="profile_pic">
+						<button class="btn btn-info blueboi">
+							<i class="fas fa-piggy-bank"></i>&nbsp;
+							NPR. 800
+						</button>
+					</span>
+				</div>
+				<div class="whiteman" style="margin-top:60px;">
+					@yield('content')
+				</div>
+			</div>
 		</div>
 		<!-- Bootstrap 4 Dependencies -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

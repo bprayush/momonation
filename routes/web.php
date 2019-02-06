@@ -19,6 +19,8 @@ Route::get('/app', 'HomeController@index')->name('app.index');
 
 Route::get('/appreciation', 'AppreciationsController@create')->name('appreciation');
 Route::post('/appreciate', 'AppreciationsController@store')->name('appreciate');
+Route::get('/store', 'StoreController@index')->name('store');
+Route::get('/momo-feed', 'FeedsController@index')->name('momo-feed');
 
 Auth::routes();
 
@@ -34,7 +36,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
 
  	Route::get('/user/superviser/make/{id}', 'UsersController@makeSupervisor')->name('make.supervisor');
  	Route::get('/user/supervisor/revoke/{id}', 'UsersController@revokeSupervisor')->name('revoke.supervisor');
-
 });
 
 

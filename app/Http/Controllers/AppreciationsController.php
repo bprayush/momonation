@@ -42,7 +42,8 @@ class AppreciationsController extends Controller
             return redirect(route('app.index'));
         }
 
-        return view('app.appreciation', compact('users', 'user'));
+        // return view('app.appreciation', compact('users', 'user'));
+        return view('app.new_appreciate', compact('users', 'user'));
     }
 
     /**
