@@ -15,7 +15,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="{{ route('momo-feed') }}">
 				<i class="fas fa-newspaper"></i>&nbsp;
 				Feed
 			</a>
@@ -27,7 +27,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="{{ route('store') }}">
 				<i class="fas fa-store"></i>&nbsp;
 				Store
 			</a>
