@@ -15,15 +15,27 @@ Momonation | Momo-Feed
 			<ul class="wow">
 				<li>
 					<i class="flaticon-dumpling text-secondary "></i>&nbsp;
-					Prayush Bijukchhe appreciated Aakash Raj Dahal with 20 momos
+					Prayush Bijukchhe appreciated Aakash Raj Dahal with 20 momos <br>
+					<span class="reason">
+						<i class="fas fa-quote-left"></i>&nbsp;
+						For being a very good boy
+					</span>
 				</li>
 				<li>
 					<i class="flaticon-dumpling text-secondary "></i>&nbsp;
-					Animesh Pandey appreciated Prayush Bijukchhe with 30 momos
+					Animesh Pandey appreciated Prayush Bijukchhe with 30 momos <br>
+					<span class="reason">
+						<i class="fas fa-quote-left"></i>&nbsp;
+						For being the best commander ever
+					</span>
 				</li>
 				<li>
 					<i class="flaticon-dumpling  text-secondary"></i>&nbsp;
-					Aakash appreciated Prayush Bijukchhe with 20 momos
+					Aakash Raj Dahal appreciated Prayush Bijukchhe with 20 momos <br>
+					<span class="reason">
+						<i class="fas fa-quote-left"></i>&nbsp;
+						For finishing 60 animes to date
+					</span>
 				</li>
 			</ul>
 		</div>
