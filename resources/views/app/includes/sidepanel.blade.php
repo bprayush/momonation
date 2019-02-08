@@ -23,7 +23,7 @@
 		<li>
 			<a href="{{ route('appreciation') }}">
 				<i class="fas fa-thumbs-up"></i>&nbsp;
-				Appreciate
+				Appreciate 
 			</a>
 		</li>
 		<li>
