@@ -13,30 +13,17 @@ Momonation | Momo-Feed
 				Recent Appreciations
 			</h3><br>
 			<ul class="wow">
+				@foreach( $appreciations as $appreciation )
 				<li>
 					<i class="flaticon-dumpling text-secondary "></i>&nbsp;
-					Prayush Bijukchhe appreciated Aakash Raj Dahal with 20 momos <br>
+					{{ $appreciation->appreciatingUser->name }} appreciated {{ $appreciation->appreciatedUser->name }} 
+					with {{ $appreciation->momos }} momos <br>
 					<span class="reason">
 						<i class="fas fa-quote-left"></i>&nbsp;
-						For being a very good boy
+						{{ $appreciation->name }}
 					</span>
 				</li>
-				<li>
-					<i class="flaticon-dumpling text-secondary "></i>&nbsp;
-					Animesh Pandey appreciated Prayush Bijukchhe with 30 momos <br>
-					<span class="reason">
-						<i class="fas fa-quote-left"></i>&nbsp;
-						For being the best commander ever
-					</span>
-				</li>
-				<li>
-					<i class="flaticon-dumpling  text-secondary"></i>&nbsp;
-					Aakash Raj Dahal appreciated Prayush Bijukchhe with 20 momos <br>
-					<span class="reason">
-						<i class="fas fa-quote-left"></i>&nbsp;
-						For finishing 60 animes to date
-					</span>
-				</li>
+				@endforeach
 			</ul>
 		</div>
 	</div>
@@ -50,9 +37,6 @@ Momonation | Momo-Feed
 			</li>
 			<li>
 				To appreciate someone, you can simply search for the username and enter the amount of momos that you'd like to send to that person
-			</li>
-			<li>
-				SFH is so dumb man... wtf
 			</li>
 		</ul>
 	</div>

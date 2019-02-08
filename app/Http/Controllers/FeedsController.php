@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Appreciation;
 
 class FeedsController extends Controller
 {
@@ -13,6 +15,7 @@ class FeedsController extends Controller
 
     public function index()
     {
-        return view('app.feed');
+        $appreciations = Appreciation::orderBy('created_at', 'desc')->get();
+        return view('app.feed', compact('appreciations'));
     }
 }

@@ -127,7 +127,7 @@ class UsersController extends Controller
         ]);
 
         Momobank::create([
-            'raw' => 200,
+            'raw' => 5,
             'cooked' => 0,
             'user_id' => $id
         ]);

@@ -44,7 +44,9 @@ class HomeController extends Controller
             $appreciations = [];
             foreach($apprc as $a )
             {
-                $temp = "<b>".$a->created_at->toFormattedDateString()."</b>: ".$users::find($a->appreciating_user)->name . " appreciated " . $users::find($a->appreciated_user)->name . " with " . $a->plates;
+                $temp = "<b>".$a->created_at->toFormattedDateString()."</b>: ".
+                        $users::find($a->appreciating_user)->name . " appreciated " . 
+                        $users::find($a->appreciated_user)->name . " with " . $a->momos . " momos";
                 array_push($appreciations, $temp);
             }
 
