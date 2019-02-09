@@ -49,7 +49,6 @@ class HomeController extends Controller
                         $users::find($a->appreciated_user)->name . " with " . $a->momos . " momos";
                 array_push($appreciations, $temp);
             }
-
             return view('app.dashboard', compact('user', 'appreciations'));
         }
     }

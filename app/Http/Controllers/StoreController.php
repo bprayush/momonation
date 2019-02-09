@@ -12,7 +12,8 @@ class StoreController extends Controller
     }
 
     function index(){
-        return view('app.store');
+        $user = auth()->user();
+        return view('app.store')->with('user', $user);
     }
 
     function checkout(){
