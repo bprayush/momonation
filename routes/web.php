@@ -13,6 +13,7 @@ Route::get('/momo-feed', 'FeedsController@index')->name('momo-feed');
 Route::get('/checkout', 'StoreController@checkout')->name('checkout');
 Route::get('/check/khalti', 'TestController@test');
 Route::post('/verify/', 'TestController@verify')->name('verify.khalti');
+Route::post('/khalti/transaction/verify/', 'KhaltiTransactionController@verifyTransaction')->name('verify.khalti.transaction');
 
 Auth::routes();
 
@@ -28,11 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
 
  	Route::get('/user/superviser/make/{id}', 'UsersController@makeSupervisor')->name('make.supervisor');
  	Route::get('/user/supervisor/revoke/{id}', 'UsersController@revokeSupervisor')->name('revoke.supervisor');
-
-
- 	
-
-
  	
 });
 

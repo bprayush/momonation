@@ -40,7 +40,7 @@ Momonation | Store
 			<td>5</td>
 			<td>Rs. 50</td>
 			<td>
-				<button class="btn btn-sm greenclick">
+				<button onclick="buyMomo(50)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -51,7 +51,7 @@ Momonation | Store
 			<td>10</td>
 			<td>Rs. 100</td>
 			<td>
-				<button class="btn btn-sm greenclick">
+				<button onclick="buyMomo(100)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -62,7 +62,7 @@ Momonation | Store
 			<td>20</td>
 			<td>Rs. 200</td>
 			<td>
-				<button class="btn btn-sm greenclick">
+				<button onclick="buyMomo(200)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -73,7 +73,7 @@ Momonation | Store
 			<td>30</td>
 			<td>Rs. 300</td>
 			<td>
-				<button class="btn btn-sm greenclick">
+				<button onclick="buyMomo(300)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -217,7 +217,12 @@ Momonation | Store
 <script src="https://khalti.com/static/khalti-checkout.js"></script>
 	<script type="text/javascript">
 		var checkout;
+		let momos;
+		$(window).on('load', function(){
+    		console.log('ads');
+    	});
 		function buyMomo(amnt){
+			momos = amnt/10;
 			let paisa = amnt * 100;
 			checkout = new KhaltiCheckout(config);
 	        checkout.show({amount: paisa});
@@ -234,25 +239,8 @@ Momonation | Store
                 onSuccess (payload) {
                     // hit merchant api for initiating verfication
                     console.log(payload);
-                    $.ajax({
-		        		type: "post",
-			            url: "{{ route('verify.khalti') }}",
-			            headers: {
-			            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			            },
-			            data: { _token : $('meta[name="csrf-token"]').attr('content'),
-			            	payload: payload
-			            },
-			            
-			            success: function (s){
-			            	console.log(s);
-			            },
-			            error: function(e){
-			            	console.log(e);
-			            	toastr.error('Something went wrong');
-
-			        	}
-	        		});
+                    sendAjax(payload, momos);
+                    
                 },
                 onError (error) {
                     console.log(error);
@@ -263,6 +251,26 @@ Momonation | Store
             }
         };
 
-       
+       function sendAjax(payload, momos){
+	       	$.ajax({
+        		type: "post",
+	            url: "{{ route('verify.khalti.transaction') }}",
+	            headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	            },
+	            data: { _token : $('meta[name="csrf-token"]').attr('content'),
+	            	payload: payload, momos: momos
+	            },
+	            
+	            success: function (s){
+	            	console.log(s);
+	            },
+	            error: function(e){
+	            	console.log(e);
+	            	toastr.error('Something went wrong');
+
+	        	}
+		    });
+       }
 	</script>
 @endsection
