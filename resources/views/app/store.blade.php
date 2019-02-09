@@ -12,7 +12,7 @@ Momonation | Store
 </h3>
 <h6 class="text-info float-right">
 	<a href="#" data-toggle="modal" data-target="#myCart">
-		Your Cart (0)
+		Your Cart (<label id="cartAmm">0</label>)
 	</a>
 </h6>
 <br>
@@ -27,19 +27,19 @@ Momonation | Store
 		<tr>
 			<td>Raw Momo</td>
 			<td>
-				1&nbsp;&nbsp;&nbsp;
+				<label contenteditable="true" id="amount" onfocusout="changePrice()" onKeypress="if(event.keyCode < 48 || event.keyCode > 57){return false;}">1&nbsp;&nbsp;</label>&nbsp;
 				<div class="btn-group">
-				  <button type="button" class="btn btn-primary btn-sm">
+				  <button onclick="decreaseNumber('amount')"  type="button" class="btn btn-primary btn-sm">
 				  	<i class="fas fa-angle-down"></i>
 				  </button>
-				  <button type="button" class="btn btn-primary btn-sm">
+				  <button onclick="addNumber('amount')" type="button" class="btn btn-primary btn-sm">
 				  	<i class="fas fa-angle-up"></i>
 				  </button>
 				</div>
 			</td>
-			<td>Rs. 8</td>
+			<td>Rs. <label id="price">10</label></td>
 			<td>
-				<button onclick="buyMomo(10)" class="btn btn-sm greenclick">
+				<button onclick="addToCart()" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -48,9 +48,9 @@ Momonation | Store
 	</thead>
 </table>
 
-<a href="{{route('checkout')}}" class="btn greenclick float-right">
+<button onclick="buyMomo()" class="btn greenclick float-right">
 	Go to Checkout 
-</a>
+</button>
 
 @endsection
 
@@ -59,14 +59,58 @@ Momonation | Store
 	<script type="text/javascript">
 		var checkout;
 		let momos;
-		$(window).on('load', function(){
-    		console.log('ads');
-    	});
-		function buyMomo(amnt){
-			momos = amnt/10;
-			let paisa = amnt * 100;
-			checkout = new KhaltiCheckout(config);
-	        checkout.show({amount: paisa});
+		let cart = [];
+		function changePrice(){
+			let text = parseInt($('#amount').text());
+			price = text * 10;
+			$('#price').text(price);
+		}
+
+		function addToCart(){
+			let	price = parseInt($('#cartAmm').text());
+			price += 1;
+			let num = parseInt($('#amount').text());
+			cart.push(num);
+			$('#amount').text('1');
+			$('#price').text('10');
+			$('#cartAmm').text(price);
+		}
+
+		function addNumber(id){
+			console.log($('#'+id));
+			let text = parseInt($('#'+id).text());
+			text += 1;
+			let	price = parseInt($('#price').text());
+			price += 10;
+			$('#price').text(price);
+			$('#'+id).text(text);
+		}
+
+		function decreaseNumber(id){
+			let text = parseInt($('#'+id).text());
+			if (text >=1) {
+				text -= 1;
+				let	price = parseInt($('#price').text());
+				price -= 10;
+				$('#price').text(price);
+				$('#'+id).text(text);
+			}
+			
+		}
+
+		function buyMomo(){
+			if (cart.length > 0) {
+				momos = cart.reduce(function(a, b){
+					return a + b;
+				}, 0);
+				// console.log(momos);
+				let paisa = momos * 10 * 100;
+				cart = [];
+				$('#cartAmm').text('0');
+				checkout = new KhaltiCheckout(config);
+		        checkout.show({amount: paisa});
+			}
+			
 	        
 		}
 
@@ -79,7 +123,7 @@ Momonation | Store
             "eventHandler": {
                 onSuccess (payload) {
                     // hit merchant api for initiating verfication
-                    console.log(payload);
+                    // console.log(payload);
                     sendAjax(payload, momos);
                     
                 },
