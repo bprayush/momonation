@@ -93,7 +93,7 @@
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i>
-                            <i class="flaticon-dumpling"></i><br>
+                            <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i>
