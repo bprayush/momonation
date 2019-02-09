@@ -21,13 +21,23 @@ Momonation | Store
 		<tr>
 			<th>Momo</th>
 			<th>Quantity</th>
-			<th>Amount</th>
+			<th>Total</th>
 			<th>Buy </th>
 		</tr>
 		<tr>
 			<td>Raw Momo</td>
-			<td>1</td>
-			<td>Rs. 10</td>
+			<td>
+				1&nbsp;&nbsp;&nbsp;
+				<div class="btn-group">
+				  <button type="button" class="btn btn-primary btn-sm">
+				  	<i class="fas fa-angle-down"></i>
+				  </button>
+				  <button type="button" class="btn btn-primary btn-sm">
+				  	<i class="fas fa-angle-up"></i>
+				  </button>
+				</div>
+			</td>
+			<td>Rs. 8</td>
 			<td>
 				<button onclick="buyMomo(10)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
@@ -35,196 +45,12 @@ Momonation | Store
 				</button>
 			</td>
 		</tr>
-		<tr>
-			<td>Raw Momo</td>
-			<td>5</td>
-			<td>Rs. 50</td>
-			<td>
-				<button onclick="buyMomo(50)" class="btn btn-sm greenclick">
-					<i class="fas fa-plus"></i>&nbsp;
-					Add to Cart
-				</button>
-			</td>
-		</tr>
-		<tr>
-			<td>Raw Momo</td>
-			<td>10</td>
-			<td>Rs. 100</td>
-			<td>
-				<button onclick="buyMomo(100)" class="btn btn-sm greenclick">
-					<i class="fas fa-plus"></i>&nbsp;
-					Add to Cart
-				</button>
-			</td>
-		</tr>
-		<tr>
-			<td>Raw Momo</td>
-			<td>20</td>
-			<td>Rs. 200</td>
-			<td>
-				<button onclick="buyMomo(200)" class="btn btn-sm greenclick">
-					<i class="fas fa-plus"></i>&nbsp;
-					Add to Cart
-				</button>
-			</td>
-		</tr>
-		<tr>
-			<td>Raw Momo</td>
-			<td>30</td>
-			<td>Rs. 300</td>
-			<td>
-				<button onclick="buyMomo(300)" class="btn btn-sm greenclick">
-					<i class="fas fa-plus"></i>&nbsp;
-					Add to Cart
-				</button>
-			</td>
-		</tr>
-		<tr style="font-weight: bold;">
-			<td>Total</td>
-			<td></td>
-			<td>Rs. 1000</td>
-		</tr>
 	</thead>
 </table>
 
 <a href="{{route('checkout')}}" class="btn greenclick float-right">
 	Go to Checkout 
 </a>
-
-
-<!-- The Modal for Viewing the Cart-->
-<div class="modal fade" id="myCart">
-  <div class="modal-dialog modal-lg"">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title text-info">
-        	<i class="fas fa-shopping-cart"></i>&nbsp;
-        	Your Cart
-        </h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        Your cart has the following items
-        <table class="table">
-        	<tr>
-        		<th>Momo</th>
-        		<th>Quantity</th>
-        		<th>Amount</th>
-        		<th></th>
-        	</tr>
-        	<tr>
-				<td>Raw Momo</td>
-				<td>1</td>
-				<td>Rs. 10</td>
-				<td>
-					<div class="btn-group btn-sm">
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-plus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-minus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-trash"></i>
-					  </button>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Raw Momo</td>
-				<td>5</td>
-				<td>Rs. 50</td>
-				<td>
-					<div class="btn-group btn-sm">
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-plus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-minus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-trash"></i>
-					  </button>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Raw Momo</td>
-				<td>10</td>
-				<td>Rs. 100</td>
-				<td>
-					<div class="btn-group btn-sm">
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-plus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-minus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-trash"></i>
-					  </button>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Raw Momo</td>
-				<td>20</td>
-				<td>Rs. 200</td>
-				<td>
-					<div class="btn-group btn-sm">
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-plus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-minus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-trash"></i>
-					  </button>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Raw Momo</td>
-				<td>30</td>
-				<td>Rs. 300</td>
-				<td>
-					<div class="btn-group btn-sm">
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-plus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-minus"></i>
-					  </button>
-					  <button type="button" class="btn btn-primary btn-sm">
-					  	<i class="fas fa-trash"></i>
-					  </button>
-					</div>
-				</td>
-			</tr>
-			<tr style="font-weight: bold;">
-				<td>Total</td>
-				<td></td>
-				<td>Total: 1000</td>
-				<td></td>
-			</tr>
-        </table>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <a href="{{route('checkout')}}" type="button" class="btn btn-info blueboi">
-        	Proceed to Checkout
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 @endsection
 
