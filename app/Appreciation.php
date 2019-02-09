@@ -11,7 +11,8 @@ class Appreciation extends Model
 		'appreciated_user',
 		'appreciating_user',
 		'name',
-		'plates'
+		'plates',
+		'momos'
 	];
 
     public function appreciatingUser()

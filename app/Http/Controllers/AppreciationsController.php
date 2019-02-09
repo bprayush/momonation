@@ -76,23 +76,30 @@ class AppreciationsController extends Controller
             $plate = "Two Plate MoMo";
         }
 
-        $appreciation = Appreciation::create([
-            'appreciating_user' => Auth::id(),
-            'appreciated_user' => $request->appreciated_user,
-            'name' => $request->name,
-            'plates' => $plate
-        ]);
+        try{
+            \DB::beginTransaction();
+            $appreciation = Appreciation::create([
+                'appreciating_user' => Auth::id(),
+                'appreciated_user' => $request->appreciated_user,
+                'name' => $request->name,
+                'plates' => $plate,
+                'momos' => $request->raw
+            ]);
 
-        $user = Auth::user();
-        $user->momobank->raw = $user->momobank->raw - $request->raw;
-        $user->momobank->save();
+            $user = Auth::user();
+            $user->momobank->raw = $user->momobank->raw - $request->raw;
+            $user->momobank->save();
 
-        $apUser = User::find( $request->appreciated_user );
-        $apUser->momobank->cooked = $apUser->momobank->cooked + $request->raw;
-        $apUser->momobank->save();
-
-        Session::flash('success', 'Appreciated successfully.');
-
+            $apUser = User::find( $request->appreciated_user );
+            $apUser->momobank->cooked = $apUser->momobank->cooked + $request->raw;
+            $apUser->momobank->save();
+            \DB::commit();
+            Session::flash('success', 'Appreciated successfully.');
+        }catch(\Exception $e){
+            \DB::rollback();
+            Session::flash('error', 'Something went wrong while submitting appreciation');
+            \Log::error($e);
+        }
         return redirect(route('app.index'));
     }
 
