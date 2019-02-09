@@ -32,5 +32,11 @@
 				Store
 			</a>
 		</li>
+		<li>
+			<a href="{{ route('store') }}">
+				<i class="fas fa-sign-out-alt"></i>&nbsp;
+				Log Out
+			</a>
+		</li>
 	</ul>
 </nav>

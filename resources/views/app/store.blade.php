@@ -128,6 +128,9 @@ Momonation | Store
 					  <button type="button" class="btn btn-primary btn-sm">
 					  	<i class="fas fa-minus"></i>
 					  </button>
+					  <button type="button" class="btn btn-primary btn-sm">
+					  	<i class="fas fa-trash"></i>
+					  </button>
 					</div>
 				</td>
 			</tr>
@@ -142,6 +145,9 @@ Momonation | Store
 					  </button>
 					  <button type="button" class="btn btn-primary btn-sm">
 					  	<i class="fas fa-minus"></i>
+					  </button>
+					  <button type="button" class="btn btn-primary btn-sm">
+					  	<i class="fas fa-trash"></i>
 					  </button>
 					</div>
 				</td>
@@ -158,6 +164,9 @@ Momonation | Store
 					  <button type="button" class="btn btn-primary btn-sm">
 					  	<i class="fas fa-minus"></i>
 					  </button>
+					  <button type="button" class="btn btn-primary btn-sm">
+					  	<i class="fas fa-trash"></i>
+					  </button>
 					</div>
 				</td>
 			</tr>
@@ -173,6 +182,9 @@ Momonation | Store
 					  <button type="button" class="btn btn-primary btn-sm">
 					  	<i class="fas fa-minus"></i>
 					  </button>
+					  <button type="button" class="btn btn-primary btn-sm">
+					  	<i class="fas fa-trash"></i>
+					  </button>
 					</div>
 				</td>
 			</tr>
@@ -187,6 +199,9 @@ Momonation | Store
 					  </button>
 					  <button type="button" class="btn btn-primary btn-sm">
 					  	<i class="fas fa-minus"></i>
+					  </button>
+					  <button type="button" class="btn btn-primary btn-sm">
+					  	<i class="fas fa-trash"></i>
 					  </button>
 					</div>
 				</td>
