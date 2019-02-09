@@ -36,6 +36,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
 
  	Route::get('/user/superviser/make/{id}', 'UsersController@makeSupervisor')->name('make.supervisor');
  	Route::get('/user/supervisor/revoke/{id}', 'UsersController@revokeSupervisor')->name('revoke.supervisor');
+
+
+ 	Route::get('/check/khalti', 'TestController@test');
+ 	Route::post('/verify/', 'TestController@verify')->name('verify.khalti');
 });
 
 
