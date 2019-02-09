@@ -15,9 +15,6 @@
     <!-- Place this where you need payment button -->
     <!-- Paste this code anywhere in you body tag -->
     <script>
-    	$(window).on('load', function(){
-    		console.log('ads');
-    	})
         var config = {
             // replace the publicKey with yours
             "publicKey": "test_public_key_29955c7492e749b5bff4f354175f118e",

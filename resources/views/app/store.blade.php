@@ -29,7 +29,7 @@ Momonation | Store
 			<td>1</td>
 			<td>Rs. 10</td>
 			<td>
-				<button class="btn btn-sm greenclick">
+				<button onclick="buyMomo(10)" class="btn btn-sm greenclick">
 					<i class="fas fa-plus"></i>&nbsp;
 					Add to Cart
 				</button>
@@ -87,9 +87,9 @@ Momonation | Store
 	</thead>
 </table>
 
-<button class="btn greenclick float-right">
+<a href="{{route('checkout')}}" class="btn greenclick float-right">
 	Go to Checkout 
-</button>
+</a>
 
 
 <!-- The Modal for Viewing the Cart-->
@@ -202,13 +202,67 @@ Momonation | Store
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-info blueboi">
+        <a href="{{route('checkout')}}" type="button" class="btn btn-info blueboi">
         	Proceed to Checkout
-        </button>
+        </a>
       </div>
 
     </div>
   </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script src="https://khalti.com/static/khalti-checkout.js"></script>
+	<script type="text/javascript">
+		var checkout;
+		function buyMomo(amnt){
+			let paisa = amnt * 100;
+			checkout = new KhaltiCheckout(config);
+	        checkout.show({amount: paisa});
+	        
+		}
+
+		var config = {
+            // replace the publicKey with yours
+            "publicKey": "{{config('envKeys.khalti_keys.public_key')}}",
+            "productIdentity": "1234567890",
+            "productName": "MoMo",
+            "productUrl": "http://example.com",
+            "eventHandler": {
+                onSuccess (payload) {
+                    // hit merchant api for initiating verfication
+                    console.log(payload);
+                    $.ajax({
+		        		type: "post",
+			            url: "{{ route('verify.khalti') }}",
+			            headers: {
+			            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			            },
+			            data: { _token : $('meta[name="csrf-token"]').attr('content'),
+			            	payload: payload
+			            },
+			            
+			            success: function (s){
+			            	console.log(s);
+			            },
+			            error: function(e){
+			            	console.log(e);
+			            	toastr.error('Something went wrong');
+
+			        	}
+	        		});
+                },
+                onError (error) {
+                    console.log(error);
+                },
+                onClose () {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+       
+	</script>
 @endsection

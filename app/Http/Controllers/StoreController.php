@@ -14,4 +14,8 @@ class StoreController extends Controller
     function index(){
         return view('app.store');
     }
+
+    function checkout(){
+        return view('app.checkout');
+    }
 }

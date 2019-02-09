@@ -10,6 +10,9 @@ Route::get('/appreciation', 'AppreciationsController@create')->name('appreciatio
 Route::post('/appreciate', 'AppreciationsController@store')->name('appreciate');
 Route::get('/store', 'StoreController@index')->name('store');
 Route::get('/momo-feed', 'FeedsController@index')->name('momo-feed');
+Route::get('/checkout', 'StoreController@checkout')->name('checkout');
+Route::get('/check/khalti', 'TestController@test');
+Route::post('/verify/', 'TestController@verify')->name('verify.khalti');
 
 Auth::routes();
 
@@ -27,8 +30,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
  	Route::get('/user/supervisor/revoke/{id}', 'UsersController@revokeSupervisor')->name('revoke.supervisor');
 
 
- 	Route::get('/check/khalti', 'TestController@test');
- 	Route::post('/verify/', 'TestController@verify')->name('verify.khalti');
+ 	
+
+
+ 	
 });
 
 
