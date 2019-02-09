@@ -40,6 +40,7 @@ ul.CTAs a {text-align: center;font-size: 0.9em !important;display: block;border-
 .whiteman{background:#fff;padding:20px;box-shadow:0px 1px 5px #c9d6df;width:100%;}
 .upman{padding:20px;}
 .profile_pic{width:36px;border-radius:100px;box-shadow:0px 1px 5px #c9d6df;}
+.profile_picmodal{width:100px;border-radius:100px;box-shadow:0px 1px 5px #c9d6df;}
 .navi{}
 .blueboi{background:#509AAF;border-radius:100px;padding:5px 15px;box-shadow:0px 1px 5px #c9d6df;}
 .everything{margin-top:50px;width:100%;margin:20px;margin-left:-30px;}
