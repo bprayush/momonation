@@ -13,6 +13,7 @@
 	<!-- Custom CSS -->
 	<link href="{{asset('css/flaticon.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('css/momonation.css')}}" rel="stylesheet">
+	<link href="{{asset('css/toastr.min.css')}}" rel="stylesheet"/>
 	<link rel="stylesheet" href="{{asset('dumplings/flaticon.css')}}">
 	
 </head>
@@ -36,6 +37,7 @@
 					</span>
 				</div>
 				<div class="whiteman" style="margin-top:60px;">
+					@include('app.includes.errors')
 					@yield('content')
 				</div>
 			</div>
@@ -59,12 +61,12 @@
 		      <div class="modal-body">
 		        <div class="text-center">
 		        	<img src="https://media.licdn.com/dms/image/C4E03AQF6vlfnMgz5-Q/profile-displayphoto-shrink_200_200/0?e=1553126400&v=beta&t=Y5AI9X8Vq6T8kuRB4bqiUPfso_Ur64SDbYAD_1xoVPg" class="profile_picmodal"><br>
-		        	<span class="text-info">
+		        	{{-- <span class="text-info">
 		        		Prayush Bijukchhe
-		        	</span><br><br>
+		        	</span><br><br> --}}
 		        	<button class="btn btn-info blueboi" data-toggle="modal" data-target="#money">
 		        		<i class="fas fa-piggy-bank"></i>&nbsp;
-		        		NPR. 800
+						{{ $user->budget }}
 		        	</button> <br><br>
 		        	<div class="row">
 		        	    <div class="col-md-4">
@@ -97,7 +99,7 @@
 		        	            <span class="stat">
 		        	                {{ $user->appreciatedBy()->count() }}
 		        	            </span>
-		        	            Appceciations
+		        	            Appreciations
 		        	        </div>
 		        	    </div>
 		        	</div>
@@ -130,6 +132,19 @@
 					$('#sidebar').toggleClass('active');
 				});
 			});
+		</script>
+		{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+		<script src="{{ asset('js/toastr.min.js') }}"></script>
+		<script>
+			@if( Session::has('success') )
+				toastr.success("{{ Session::get('success') }}");
+			@endif
+			@if( Session::has('info') )
+				toastr.info("{{ Session::get('info') }}")
+			@endif
+			@if( Session::has('error') )
+				toastr.info("{{ Session::get('error') }}")
+			@endif
 		</script>
 	</body>
 </html>

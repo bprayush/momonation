@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\KhaltiTransaction;
 use App\Momobank;
 use App\TotalBudget;
-use App\KhaltiTransaction;
 use Illuminate\Http\Request;
 
 class KhaltiTransactionController extends Controller
@@ -43,45 +43,72 @@ class KhaltiTransactionController extends Controller
         // dd($response);
         if ($status_code == 200)
         {
-            $khalti = KhaltiTransaction::create([
-                'user_id'            => auth()->user()->id,
-                'mobile'             => $response['user']['mobile'],
-                'amount'             => $response['amount'],
-                'fee_deducted'       => $response['fee_amount'],
-                'khalti_payment_idx' => $response['idx'],
-                'verified_token'     => $request->payload['token'],
-                'type'               => $response['type']['name'],
-                'status'             => $response['state']['name'],
-                'number_of_momos'    => $request->momos,
+            try {
+                \DB::beginTransaction();
+                // GET THE USER ID OF AUTHENTICATED USER AND STORE IT IN user
+                $khalti = KhaltiTransaction::create([
+                    'user_id'            => auth()->user()->id,
+                    'mobile'             => $response['user']['mobile'],
+                    'amount'             => $response['amount'],
+                    'fee_deducted'       => $response['fee_amount'],
+                    'khalti_payment_idx' => $response['idx'],
+                    'verified_token'     => $request->payload['token'],
+                    'type'               => $response['type']['name'],
+                    'status'             => $response['state']['name'],
+                    'number_of_momos'    => $request->momos,
 
-            ]);
+                ]);
 
-            $momobank = Momobank::where('user_id', auth()->user()->id)->first();
-            $momobank->raw += $request->momos;
-            $momobank->save();
+                $momobank = Momobank::where('user_id', auth()->user()->id)->first();
+                $momobank->raw += $request->momos;
+                $momobank->save();
 
-            TotalBudget::Create([
-                'transaction_id' => $khalti->id,
-                'amount'         => $khalti->amount - $khalti->fee_deducted,
-            ]);
+                TotalBudget::Create([
+                    'transaction_id' => $khalti->id,
+                    'amount'         => $khalti->amount - $khalti->fee_deducted,
+                ]);
+                // COMMIT THE DATA
+                \DB::commit();
+            }
+            catch (\Exception $e)
+            {
+                $khalti = $e;
+                // ROLLBACK DATABASE TRANSACTION IF ERROR OCCURS
+                \DB::rollback();
+
+            }
+
         }
         else
         {
-            $khalti = KhaltiTransaction::create([
-                'user_id'            => auth()->user()->id,
-                'mobile'             => $request->payload['mobile'],
-                'amount'             => $request->payload['amount'],
-                'fee_deducted'       => null,
-                'khalti_payment_idx' => $response['idx'],
-                'verified_token'     => $request->payload['token'],
-                'type'               => null,
-                'status'             => 'ERROR',
-                'number_of_momos'    => $request->momos,
-                'error_detail'       => $response['payload']['detail'],
+            try {
+                \DB::beginTransaction();
+                // GET THE USER ID OF AUTHENTICATED USER AND STORE IT IN user
+                $khalti = KhaltiTransaction::create([
+                    'user_id'            => auth()->user()->id,
+                    'mobile'             => $request->payload['mobile'],
+                    'amount'             => $request->payload['amount'],
+                    'fee_deducted'       => null,
+                    'khalti_payment_idx' => $response['idx'],
+                    'verified_token'     => $request->payload['token'],
+                    'type'               => null,
+                    'status'             => 'ERROR',
+                    'number_of_momos'    => $request->momos,
+                    'error_detail'       => $response['payload']['detail'],
 
-            ]);
+                ]);
+                // COMMIT THE DATA
+                \DB::commit();
+            }
+            catch (\Exception $e)
+            {
+                // ROLLBACK DATABASE TRANSACTION IF ERROR OCCURS
+                $khalti = $e;
+                \DB::rollback();
+            }
+
         }
 
-        return $khalti;
+        return response()->json($khalti);
     }
 }

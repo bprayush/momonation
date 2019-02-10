@@ -16,7 +16,7 @@ class FeedsController extends Controller
     public function index()
     {
         $appreciations = Appreciation::orderBy('created_at', 'desc')->get();
-        $user = auth()->user();
+        $user = Auth::user();
         return view('app.feed', compact('appreciations', 'user'));
     }
 }

@@ -22,24 +22,28 @@
         <div class="text-center">
             <br><br><br><br><br>
             <div class="redeem">
-                <h2 class="text-center text-info">Redeem</h2>
+                <h2 class="text-center text-info">Redeem a Mo:Mo of your choice</h2>
                 <span class="float-right">
                     <a href="#">
-                        Your Points (200)
+                        Your Points ({{ $user->momobank->cooked }})
                     </a>
                 </span><br><br>
-                <button class="btn btn-info blueboi">
-                    Redeem
-                </button><br><br><br>
+                @if( $user->momobank->cooked < 200 )
+                    <h5 style="color: red">You do not have sufficeint funds to redeem (min. 200 cooked mo:mo requried)</h5>
+                @else
+                    <button class="btn btn-info blueboi">
+                        Redeem
+                    </button><br><br><br>
+                @endif
                 <i><strong>OR</strong></i> <br><br>
                 <h2 class="text-info">
                     Donate to Charity
                 </h2>
                 <br><br>
                 <input type="number" placeholder="Enter Amount" class="form-control boxee" style="margin-left:auto;margin-right:auto;"><br>
-                <button class="btn btn-info blueboi">
+                <a href="{{ route('charity') }}" class="btn btn-info blueboi">
                     Donate
-                </button>
+                </a>
             </div>
         </div>
     </div>

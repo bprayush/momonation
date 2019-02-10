@@ -11,6 +11,11 @@ Route::post('/appreciate', 'AppreciationsController@store')->name('appreciate');
 Route::get('/store', 'StoreController@index')->name('store');
 Route::get('/momo-feed', 'FeedsController@index')->name('momo-feed');
 Route::get('/checkout', 'StoreController@checkout')->name('checkout');
+
+Route::get('/redeem', 'RedeemController@index')->name('redeem.index');
+Route::post('/redeem/momo', 'RedeemController@redeem')->name('redeem.redeem');
+Route::get('/redeem/charity', 'RedeemController@charity')->name('charity');
+
 Route::get('/check/khalti', 'TestController@test');
 Route::post('/verify/', 'TestController@verify')->name('verify.khalti');
 Route::post('/khalti/transaction/verify/', 'KhaltiTransactionController@verifyTransaction')->name('verify.khalti.transaction');
@@ -26,7 +31,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'admi
  	Route::get('/user/approve/{id}', 'UsersController@approve')->name('user.approve');
  	Route::get('/user/disapprove/{id}', 'UsersController@disapprove')->name('user.disapprove');
  	Route::get('/user/delete/{id}', 'UsersController@destroy')->name('user.delete');
-
  	Route::get('/user/superviser/make/{id}', 'UsersController@makeSupervisor')->name('make.supervisor');
  	Route::get('/user/supervisor/revoke/{id}', 'UsersController@revokeSupervisor')->name('revoke.supervisor');
  	

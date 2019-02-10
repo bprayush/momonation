@@ -14,7 +14,7 @@
 			</div>
 			<div class="panel-body">
 				<form action="{{ route('appreciate') }}" method="POST">
-					{{ csrf_field() }}
+					{{ csrf_field() }} 
 					<div class="form-group">
 						<label for="apprname">Name your appreciation</label>
 						<input type="text" name="name" class="form-control" placeholder="Appreciation Name">

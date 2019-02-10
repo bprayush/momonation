@@ -34,33 +34,46 @@
             </div>
             <div class="col-md-6">
                 <div class="logger">
-
                     <!-- Tab panes -->
                     <div class="tab-content">
                       <div class="tab-pane container active" id="home">
-                        <h2 class="text-info">Log In</h2>
-                        <br>
-                        <input type="text" class="form-control boxee" placeholder="Username or Email"><br>
-                        <input type="password" class="form-control boxee" placeholder="Enter your password"><br>
-                        <input type="checkbox">&nbsp;
-                        Keep me Signed In <br><br>
-                        <button class="btn btn-info blueboi">
-                            <i class="fas fa-sign-in-alt"></i>&nbsp;
-                            Log In
-                        </button>
+                        <form method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+                            <h2 class="text-info">Log In</h2>
+                            <br>
+                            <input name="email" value="{{ old('email') }}" type="text" class="form-control boxee" placeholder="Email"><br>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span><br>
+                            @endif
+                            <input type="password" name="password" class="form-control boxee" placeholder="Enter your password"><br>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span><br>
+                            @endif
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>&nbsp;
+                            Keep me Signed In <br><br>
+                            <button type="submit" class="btn btn-info blueboi">
+                                <i class="fas fa-sign-in-alt"></i>&nbsp;
+                                Log In
+                            </button>
+                        </form>
                         <br><br>
                         <hr><br>
-                        <h2 class="text-info">Register</h2><br>
-                        <input type="text" class="form-control boxee" placeholder="Your Full Name"><br>
-                        <input type="text" class="form-control boxee" placeholder="Your Email ID"><br>
-                        <input type="password" class="form-control boxee" placeholder="Enter Password"><br>
-                        <input type="password" class="form-control boxee" placeholder="Confirm Password"><br>
-                        <input type="checkbox">&nbsp;
-                        I agree to the Terms and Conditions <br><br>
-                        <button class="btn btn-info blueboi">
-                            <i class="fas fa-user-plus"></i>&nbsp;
-                            Register
-                        </button>
+                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                            {{ csrf_field() }}
+                            <h2 class="text-info">Register</h2><br>
+                            <input type="text" name="name" value="{{ old('name') }}"  class="form-control boxee" placeholder="Your Full Name" required><br>
+                            <input type="text" name="email" value="{{ old('email') }}" class="form-control boxee" placeholder="Your Email ID" required><br>
+                            <input type="password" class="form-control boxee" placeholder="Enter Password" name="password" required><br>
+                            <input type="password" class="form-control boxee" placeholder="Confirm Password" name="password_confirmation" required><br>
+                            <button class="btn btn-info blueboi">
+                                <i class="fas fa-user-plus"></i>&nbsp;
+                                Register
+                            </button>
+                        </form>
                       </div>
                       <div class="tab-pane container fade" id="menu1">
                           <br><br>
