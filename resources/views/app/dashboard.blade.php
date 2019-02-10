@@ -62,9 +62,9 @@
                         <div class="text-center">
                             <i class="flaticon-dumpling"></i>&nbsp; <br><br>
                             <h3>1 momo</h3>
-                            <button class="btn btn-success greenclick">
+                            <a href="{{ route('store') }}" class="btn btn-success greenclick">
                                 Buy Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -77,9 +77,9 @@
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i><br><br>
                             <h3>5 momos</h3>
-                            <button class="btn btn-success greenclick">
+                            <a href="{{ route('store') }}" class="btn btn-success greenclick">
                                 Buy Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -100,9 +100,9 @@
                             <i class="flaticon-dumpling"></i>
                             <i class="flaticon-dumpling"></i><br><br>
                             <h3>10 momos</h3>
-                            <button class="btn btn-success greenclick">
+                            <a href="{{ route('store') }}" class="btn btn-success greenclick">
                                 Buy Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

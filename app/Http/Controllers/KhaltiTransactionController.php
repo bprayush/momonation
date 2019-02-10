@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Momobank;
+use App\TotalBudget;
 use App\KhaltiTransaction;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,10 @@ class KhaltiTransactionController extends Controller
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         $response = json_decode($response, true);
-        return $response;
+        // return $response;
         // dd($response);
-        if ($status_code == 200) {
+        if ($status_code == 200)
+        {
             $khalti = KhaltiTransaction::create([
                 'user_id'            => auth()->user()->id,
                 'mobile'             => $response['user']['mobile'],
@@ -57,7 +59,14 @@ class KhaltiTransactionController extends Controller
             $momobank = Momobank::where('user_id', auth()->user()->id)->first();
             $momobank->raw += $request->momos;
             $momobank->save();
-        }else{
+
+            TotalBudget::Create([
+                'transaction_id' => $khalti->id,
+                'amount'         => $khalti->amount - $khalti->fee_deducted,
+            ]);
+        }
+        else
+        {
             $khalti = KhaltiTransaction::create([
                 'user_id'            => auth()->user()->id,
                 'mobile'             => $request->payload['mobile'],
@@ -68,11 +77,11 @@ class KhaltiTransactionController extends Controller
                 'type'               => null,
                 'status'             => 'ERROR',
                 'number_of_momos'    => $request->momos,
-                'error_detail'       => $response['payload']['detail']
+                'error_detail'       => $response['payload']['detail'],
 
             ]);
         }
-        
+
         return $khalti;
     }
 }

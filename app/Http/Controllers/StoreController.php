@@ -13,6 +13,8 @@ class StoreController extends Controller
 
     function index(){
         $user = auth()->user();
+        // return $user;
+        // dd($user);
         return view('app.store')->with('user', $user);
     }
 

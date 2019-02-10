@@ -31,7 +31,7 @@
 						<img src="https://media.licdn.com/dms/image/C4E03AQF6vlfnMgz5-Q/profile-displayphoto-shrink_200_200/0?e=1553126400&v=beta&t=Y5AI9X8Vq6T8kuRB4bqiUPfso_Ur64SDbYAD_1xoVPg" class="profile_pic">
 						<button class="btn btn-info blueboi" data-toggle="modal" data-target="#money">
 							<i class="fas fa-piggy-bank"></i>&nbsp;
-							NPR. 800
+							NPR. {{$user->budget}}
 						</button>
 					</span>
 				</div>

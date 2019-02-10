@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\TotalBudget;
+use App\KhaltiTransaction;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'admin', 'supervisor', 'approved'
+        'name', 'email', 'password', 'admin', 'supervisor', 'approved',
     ];
 
     /**
@@ -25,6 +27,10 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $appends = [
+        'budget',
     ];
 
 
@@ -40,12 +46,22 @@ class User extends Authenticatable
 
     public function appreciated()
     {
-        return $this->hasMany('App\Appreciation', 'appreciating_user', 'id');   
+        return $this->hasMany('App\Appreciation', 'appreciating_user', 'id');
     }
 
     public function appreciatedBy()
     {
         return $this->hasMany('App\Appreciation', 'appreciated_user', 'id');
+    }
+
+    public function khaltiTransactions()
+    {
+        return $this->hasMany(KhaltiTransaction::class);
+    }
+
+    public function getBudgetAttribute()
+    {
+        return TotalBudget::sum('amount')/100;
     }
 
 }
