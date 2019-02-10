@@ -33,6 +33,12 @@
 			</a>
 		</li>
 		<li>
+			<a href="{{ route('redeem.index') }}">
+				<i class="fas fa-store"></i>&nbsp;
+				Redeem
+			</a>
+		</li>
+		<li>
 			<a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
