@@ -148,6 +148,7 @@ Momonation | Store
 	            },
 	            
 	            success: function (s){
+	            	toastr.success('Your Payment is Successfull');
 	            	console.log(s);
 	            },
 	            error: function(e){
