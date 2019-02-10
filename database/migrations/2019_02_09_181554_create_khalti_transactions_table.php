@@ -17,11 +17,11 @@ class CreateKhaltiTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('mobile');
-            $table->decimal('amount', 8, 2);
-            $table->decimal('fee_deducted', 8, 2);
+            $table->decimal('amount', 12, 2);
+            $table->decimal('fee_deducted', 12, 2)->nullable();
             $table->string('khalti_payment_idx');
             $table->string('verified_token');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('status');
             $table->string('number_of_momos');
             $table->timestamps();

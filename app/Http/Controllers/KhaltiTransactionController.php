@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Momobank;
 use App\KhaltiTransaction;
 use Illuminate\Http\Request;
 
@@ -37,20 +38,41 @@ class KhaltiTransactionController extends Controller
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         $response = json_decode($response, true);
+        return $response;
         // dd($response);
-        // return $response;
-        $khalti = KhaltiTransaction::create([
-            'user_id'            => auth()->user()->id,
-            'mobile'             => $response['user']['mobile'],
-            'amount'             => $response['amount'],
-            'fee_deducted'       => $response['fee_amount'],
-            'khalti_payment_idx' => $response['idx'],
-            'verified_token'     => $request->payload['token'],
-            'type'               => $response['type']['name'],
-            'status'             => $response['state']['name'],
-            'number_of_momos'    => $request->momos,
+        if ($status_code == 200) {
+            $khalti = KhaltiTransaction::create([
+                'user_id'            => auth()->user()->id,
+                'mobile'             => $response['user']['mobile'],
+                'amount'             => $response['amount'],
+                'fee_deducted'       => $response['fee_amount'],
+                'khalti_payment_idx' => $response['idx'],
+                'verified_token'     => $request->payload['token'],
+                'type'               => $response['type']['name'],
+                'status'             => $response['state']['name'],
+                'number_of_momos'    => $request->momos,
 
-        ]);
+            ]);
+
+            $momobank = Momobank::where('user_id', auth()->user()->id)->first();
+            $momobank->raw += $request->momos;
+            $momobank->save();
+        }else{
+            $khalti = KhaltiTransaction::create([
+                'user_id'            => auth()->user()->id,
+                'mobile'             => $request->payload['mobile'],
+                'amount'             => $request->payload['amount'],
+                'fee_deducted'       => null,
+                'khalti_payment_idx' => $response['idx'],
+                'verified_token'     => $request->payload['token'],
+                'type'               => null,
+                'status'             => 'ERROR',
+                'number_of_momos'    => $request->momos,
+                'error_detail'       => $response['payload']['detail']
+
+            ]);
+        }
+        
         return $khalti;
     }
 }

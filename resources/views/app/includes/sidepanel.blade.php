@@ -33,10 +33,15 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{ route('store') }}">
+			<a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
 				<i class="fas fa-sign-out-alt"></i>&nbsp;
 				Log Out
 			</a>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			    {{ csrf_field() }}
+			</form>
 		</li>
 	</ul>
 </nav>
